@@ -94,8 +94,6 @@ uvicorn main:app --reload
 - Python 3.8+
 - FastAPI
 - uvicorn
-- aiofiles
-- pydantic
 - httpx (si usas Telegram Bot API)
 
 ---
