@@ -12,10 +12,19 @@ Guiar a los usuarios paso a paso a través de 18 módulos educativos, con conten
 ## 📁 Estructura del Proyecto
 
 ```
-├── main.py                # Archivo principal de la API FastAPI
-├── modulos.json          # Contiene todos los módulos con videos, textos y preguntas
-├── usuarios.txt          # Archivo donde se guarda el progreso en formato tipo API
-├── requirements.txt      # Dependencias necesarias para correr el proyecto
+├── main.py
+├── requirements.txt
+├── README.md
+├── modulos/
+│   └── modulos.json
+├── progreso/
+│   └──
+├── servicios/
+│   ├── gestor_modulos.py
+│   └── manejador_telegram.py
+├── utilidades/
+│   └── json_utils.py
+
 ```
 
 ---
@@ -56,14 +65,9 @@ Ejemplo de módulo:
 
 ## 🧠 Funcionalidades Clave
 
-- ✅ Registro personalizado de usuarios.
-- 🧮 Almacenamiento y seguimiento del progreso con nombre, módulo, etapa y fecha de inscripción.
 - 🧪 Validación automática de respuestas.
 - 🔄 Repetición de contenido hasta respuestas correctas.
-- ⏱️ Envío automático del siguiente módulo tras 24h de inactividad.
 - 🤖 Protección contra bots maliciosos.
-- 💾 Persistencia en `usuarios.txt` en formato JSON API.
-
 ---
 
 ## 🚀 Cómo ejecutar
@@ -98,7 +102,8 @@ uvicorn main:app --reload
 
 ## 💬 Contacto
 
-Si deseas colaborar, reportar errores o hacer sugerencias, no dudes en abrir un issue o crear un pull request.
+Si deseas colaborar, reportar errores o hacer sugerencias,contactate con el 
+docente.
 
 ---
 
