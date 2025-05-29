@@ -1,0 +1,105 @@
+
+# Sistema de Microlearning Educativo en Telegram
+
+Este sistema educativo está diseñado para ofrecer microlecciones secuenciales sobre **Programación Orientada a Objetos aplicada a HTML, CSS y JavaScript**, a través de Telegram usando FastAPI como backend.
+
+## 🎯 Objetivo
+
+Guiar a los usuarios paso a paso a través de 18 módulos educativos, con contenido multimedia, textos explicativos y preguntas que deben ser respondidas correctamente para avanzar. El sistema también gestiona el progreso, detecta bots maliciosos y puede reanudar el aprendizaje automáticamente si el usuario no continúa tras 24 horas.
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+├── main.py                # Archivo principal de la API FastAPI
+├── modulos.json          # Contiene todos los módulos con videos, textos y preguntas
+├── usuarios.txt          # Archivo donde se guarda el progreso en formato tipo API
+├── requirements.txt      # Dependencias necesarias para correr el proyecto
+```
+
+---
+
+## 📚 Contenido de los Módulos
+
+Los módulos están definidos en `modulos.json`. Cada uno incluye:
+
+- `video_url`: Enlace al video explicativo del módulo.
+- `textos`: Lista de textos instructivos que introducen el contenido.
+- `preguntas`: Lista de preguntas con sus respuestas correctas que deben ser respondidas para continuar.
+
+Ejemplo de módulo:
+
+```json
+{
+  "id": 1,
+  "video_url": "https://www.youtube.com/watch?v=dmNC9VZNREw",
+  "textos": [
+    "La programación orientada a objetos (POO) es un paradigma que organiza el software usando objetos y clases.",
+    "En HTML podemos preparar la estructura para que JavaScript implemente POO en las interacciones.",
+    "Escribe **seguir** para continuar empezar las preguntas de este modulo."
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Cuál es el paradigma que organiza software con objetos y clases?",
+      "respuesta": "programación orientada a objetos"
+    },
+    {
+      "pregunta": "¿En qué lenguaje web se puede aplicar POO para interacciones?",
+      "respuesta": "javascript"
+    }
+  ]
+}
+```
+
+---
+
+## 🧠 Funcionalidades Clave
+
+- ✅ Registro personalizado de usuarios.
+- 🧮 Almacenamiento y seguimiento del progreso con nombre, módulo, etapa y fecha de inscripción.
+- 🧪 Validación automática de respuestas.
+- 🔄 Repetición de contenido hasta respuestas correctas.
+- ⏱️ Envío automático del siguiente módulo tras 24h de inactividad.
+- 🤖 Protección contra bots maliciosos.
+- 💾 Persistencia en `usuarios.txt` en formato JSON API.
+
+---
+
+## 🚀 Cómo ejecutar
+
+1. Clona este repositorio:
+```bash
+git clone https://github.com/PAGINAS-FCL/BOT-POO.git
+```
+
+2. Instala las dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+3. Ejecuta el servidor:
+```bash
+uvicorn main:app --reload
+```
+
+---
+
+## 🛠️ Requisitos
+
+- Python 3.8+
+- FastAPI
+- uvicorn
+- aiofiles
+- pydantic
+- httpx (si usas Telegram Bot API)
+
+---
+
+## 💬 Contacto
+
+Si deseas colaborar, reportar errores o hacer sugerencias, no dudes en abrir un issue o crear un pull request.
+
+---
+
+**¡Feliz aprendizaje!**
