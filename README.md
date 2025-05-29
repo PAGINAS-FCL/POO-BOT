@@ -5,7 +5,7 @@ Este sistema educativo está diseñado para ofrecer microlecciones secuenciales 
 
 ## 🎯 Objetivo
 
-Guiar a los usuarios paso a paso a través de 18 módulos educativos, con contenido multimedia, textos explicativos y preguntas que deben ser respondidas correctamente para avanzar. El sistema también gestiona el progreso, detecta bots maliciosos y puede reanudar el aprendizaje automáticamente si el usuario no continúa tras 24 horas.
+Guiar a los usuarios paso a paso a través de 18 módulos educativos, con contenido multimedia, textos explicativos y preguntas que deben ser respondidas correctamente para avanzar. El sistema también gestiona el progreso, detecta bots maliciosos y puede reanudar el aprendizaje en el punto donde el estudiante lo dejo.
 
 ---
 
