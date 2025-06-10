@@ -5,7 +5,7 @@ Este sistema educativo está diseñado para ofrecer microlecciones secuenciales 
 
 ## 🎯 Objetivo
 
-Guiar a los usuarios paso a paso a través de 18 módulos educativos, con contenido multimedia, textos explicativos y preguntas que deben ser respondidas correctamente para avanzar. El sistema también gestiona el progreso, detecta bots maliciosos y puede reanudar el aprendizaje automáticamente si el usuario no continúa tras 24 horas.
+Guiar a los usuarios paso a paso a través de 18 módulos educativos, con contenido multimedia, textos explicativos y preguntas que deben ser respondidas correctamente para avanzar. El sistema también gestiona el progreso, detecta bots maliciosos y puede reanudar el aprendizaje automáticamente si el usuario no continúa tras 24 horas. Ayuda al docente a visualizar el progreso de los estudiantes.
 
 ---
 
@@ -95,18 +95,16 @@ uvicorn main:app --reload
 ## 🛠️ Requisitos
 
 - Python 3.8+
-- FastAPI
+- fastapi
 - uvicorn
-- aiofiles
-- pydantic
-- httpx (si usas Telegram Bot API)
+- httpx
+- python-dotenv
 
 ---
 
 ## 💬 Contacto
 
-Si deseas colaborar, reportar errores o hacer sugerencias,contactate con el 
-docente.
+Si deseas colaborar, reportar errores o hacer sugerencias,contactate con paginas-FCL
 
 ---
 
