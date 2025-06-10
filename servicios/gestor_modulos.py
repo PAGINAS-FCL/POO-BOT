@@ -3,6 +3,7 @@ from utilidades.json_utils import cargar_json, guardar_json
 
 RUTA_MODULOS = "modulos/modulos.json"
 RUTA_PROGRESO = "progreso"
+RUTA_DATA = "data/data.json"
 
 modulos = cargar_json(RUTA_MODULOS)
 
@@ -12,32 +13,39 @@ def ruta_progreso(usuario_id):
 def inicializar_usuario(usuario_id):
     ruta = ruta_progreso(usuario_id)
     if not os.path.exists(ruta):
-        guardar_json(ruta, {"modulo": 0, "etapa": "inicio", "indice_pregunta": 0})
+        guardar_json(ruta, {"codigo": None, "modulo": 0, "etapa": "inicio", "indice_pregunta": 0})
     return cargar_json(ruta)
+
+def actualizar_data_json(usuario_id, codigo, modulo):
+    data = cargar_json(RUTA_DATA)
+    encontrado = False
+    for usuario in data:
+        if usuario["id"] == usuario_id:
+            usuario["modulo"] = modulo
+            encontrado = True
+            break
+    if not encontrado:
+        data.append({"id": usuario_id, "codigo": codigo, "modulo": modulo})
+    guardar_json(RUTA_DATA, data)
 
 def procesar_entrada_usuario(usuario_id, entrada):
     ruta = ruta_progreso(usuario_id)
-    if not os.path.exists(ruta):
-        guardar_json(ruta, {
-            "modulo": 0,
-            "etapa": "inicio",
-            "indice_pregunta": 0,
-            "bienvenida_dada": True
-        })
-        return (
-            "👋 ¡Bienvenido al curso de Programación Orientada a Objetos aplicada a HTML, CSS y JavaScript!\n"
-            "Para comenzar, por favor escribe la palabra: **empezar**"
-        )
+    progreso = inicializar_usuario(usuario_id)
 
-    progreso = cargar_json(ruta)
+    if progreso["codigo"] is None:
+        progreso["codigo"] = entrada.strip()
+        guardar_json(ruta, progreso)
+        actualizar_data_json(usuario_id, progreso["codigo"], progreso["modulo"])
+        return "✅ Código registrado correctamente. Escribe **empezar** para comenzar el curso."
+
     indice_modulo = progreso["modulo"]
-
     if indice_modulo >= len(modulos):
         return "🎉 ¡Felicitaciones! Has completado todos los módulos."
 
     modulo_actual = modulos[indice_modulo]
     etapa = progreso["etapa"]
     entrada = entrada.strip().lower()
+
     if etapa == "inicio":
         if entrada == "empezar":
             progreso["etapa"] = "textos"
@@ -68,11 +76,12 @@ def procesar_entrada_usuario(usuario_id, entrada):
                 progreso["etapa"] = "inicio"
                 progreso["indice_pregunta"] = 0
                 guardar_json(ruta, progreso)
+                actualizar_data_json(usuario_id, progreso["codigo"], progreso["modulo"])
 
                 if progreso["modulo"] >= len(modulos):
                     return "🎉 ¡Felicitaciones! Has completado todos los módulos."
 
-                return "✅ ¡Muy bien! Has terminado este módulo.\n\nEscribe **'empezar'** para continuar con el siguiente módulo."
+                return f"✅ ¡Muy bien! Has terminado este módulo.\n\nPerfecto, llevas completados {progreso['modulo']}/18 módulos.\nEscribe **'empezar'** para continuar."
             else:
                 progreso["indice_pregunta"] = i
                 guardar_json(ruta, progreso)
