@@ -17,3 +17,4 @@ async def webhook_telegram(request: Request):
 async def ver_progreso():
     data = cargar_json("data/data.json")
     return JSONResponse(content=data)
+
