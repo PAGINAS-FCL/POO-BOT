@@ -12,10 +12,21 @@ Guiar a los usuarios paso a paso a través de 18 módulos educativos, con conten
 ## 📁 Estructura del Proyecto
 
 ```
-├── main.py                # Archivo principal de la API FastAPI
-├── modulos.json          # Contiene todos los módulos con videos, textos y preguntas
-├── usuarios.txt          # Archivo donde se guarda el progreso en formato tipo API
-├── requirements.txt      # Dependencias necesarias para correr el proyecto
+├── main.py # Punto de entrada FastAPI
+├── requirements.txt # Dependencias del proyecto
+├── modulos/
+│ └── modulos.json # Contenido de los módulos del curso
+├── servicios/
+│ ├── gestor_modulos.py # Lógica de interacción y progresión
+│ └── manejador_telegram.py # Comunicación con Telegram
+├── utilidades/
+│ └── json_utils.py # Utilidades para manejar JSON
+├── data/
+│ └── data.json # Registro general de todos los usuarios
+├── frontend/
+│ ├── index.html # Vista HTML para administrador
+│ ├── estilos.css # Estilos visuales
+│ └── script.js # Código JS para obtener progreso
 ```
 
 ---
@@ -56,11 +67,10 @@ Ejemplo de módulo:
 
 ## 🧠 Funcionalidades Clave
 
-- ✅ Registro personalizado de usuarios.
-- 🧮 Almacenamiento y seguimiento del progreso con nombre, módulo, etapa y fecha de inscripción.
-- 🧪 Validación automática de respuestas.
-- 🔄 Repetición de contenido hasta respuestas correctas.
-- 🤖 Protección contra bots maliciosos.
+- 🔑 Solicita un **código de estudiante** al inicio.
+- 📊 Registra el módulo alcanzado por cada código en `data/data.json`.
+- 👁️ Interfaz web para visualizar el avance de todos los usuarios.
+- 🔐 Filtrado básico antispam.
 ---
 
 ## 🚀 Cómo ejecutar

@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from servicios.manejador_telegram import procesar_actualizacion_telegram
 from utilidades.json_utils import cargar_json
 
 app = FastAPI()
 
-app.mount("/admin", StaticFiles(directory="frontend", html=True), name="admin")
+app.mount("/index", StaticFiles(directory="frontend", html=True), name="index")
 
 @app.post("/webhook")
 async def webhook_telegram(request: Request):
@@ -17,4 +17,3 @@ async def webhook_telegram(request: Request):
 async def ver_progreso():
     data = cargar_json("data/data.json")
     return JSONResponse(content=data)
-

@@ -1,28 +1,17 @@
-async function cargarDatos() {
-  const respuesta = await fetch("/ver_progreso");
-  const data = await respuesta.json();
-  const cuerpo = document.getElementById("cuerpo-tabla");
-  cuerpo.innerHTML = "";
+async function cargarProgreso() {
+  const res = await fetch("/ver_progreso");
+  const data = await res.json();
+  const tbody = document.querySelector("#tabla-progreso tbody");
+  tbody.innerHTML = "";
 
   for (const [codigo, info] of Object.entries(data)) {
-    const fila = document.createElement("tr");
-
-    const tdCodigo = document.createElement("td");
-    tdCodigo.textContent = codigo;
-
-    const tdModulo = document.createElement("td");
-    tdModulo.textContent = info.modulo_actual;
-
-    const tdPorcentaje = document.createElement("td");
-    const porcentaje = Math.round((info.modulo_actual / 18) * 100);
-    tdPorcentaje.textContent = `${porcentaje}%`;
-
-    fila.appendChild(tdCodigo);
-    fila.appendChild(tdModulo);
-    fila.appendChild(tdPorcentaje);
-    cuerpo.appendChild(fila);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${codigo}</td>
+      <td>${info.modulo}/18</td>
+    `;
+    tbody.appendChild(tr);
   }
 }
 
-cargarDatos();
-setInterval(cargarDatos, 10000); // actualiza cada 10s
+cargarProgreso();
